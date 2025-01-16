@@ -106,6 +106,20 @@ async def main(url, search_text, response_route):
         print("Connected.")
         await page.goto(url, timeout=120000)
         print("Loaded initial page.")
+        
+        # Check if a CAPTCHA is present
+        if await page.query_selector("input#captchacharacters") or "captcha" in page.url:
+            print("CAPTCHA detected! Please solve it manually.")
+            await page.pause()
+
+            # Wait until the CAPTCHA is resolved
+            while await page.query_selector("input#captchacharacters") or "captcha" in page.url:
+                print("Waiting for CAPTCHA to be resolved...")
+                await asyncio.sleep(5)  # Wait for 5 seconds before checking again
+
+            print("CAPTCHA resolved! Continuing the scraping process...")
+
+        # Continue with the search
         search_page = await search(metadata, page, search_text)
 
         def func(x): return None
@@ -116,10 +130,12 @@ async def main(url, search_text, response_route):
 
         results = await get_products(search_page, search_text, metadata["product_selector"], func)
         print("Saving results.")
+        save_results(results)
+        
         post_results(results, response_route, search_text, url)
 
         await browser.close()
 
 if __name__ == "__main__":
     # test script
-    asyncio.run(main(AMAZON, "ryzen 9 3950x"))
+    asyncio.run(main(AMAZON, "ryzen 9 3950x", "/results"))
