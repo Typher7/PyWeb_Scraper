@@ -11,7 +11,7 @@ async def get_product(product_div):
     # Query for all elements at once
     image_element_future = product_div.query_selector('img.s-image')
     name_element_future = product_div.query_selector(
-        'h2 a span')
+        'a.a-link-normal.s-line-clamp-4.s-link-style.a-text-normal h2 span')
     price_element_future = product_div.query_selector('span.a-offscreen')
     url_element_future = product_div.query_selector(
         'a.a-link-normal.s-no-hover.s-underline-text.s-underline-link-text.s-link-style.a-text-normal')
