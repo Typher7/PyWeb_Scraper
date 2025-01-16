@@ -90,6 +90,15 @@ def post_results(results, endpoint, search_text, source):
                     headers=headers, json=data)
     print("Status code:", response.status_code)
 
+async def handle_capcha(page):
+    print("CAPTCHA detected! Please solve it manually.")
+
+    # Wait until the CAPTCHA is resolved
+    while await page.query_selector("input#captchacharacters") or "captcha" in page.url:
+        print("Waiting for CAPTCHA to be resolved...")
+        await asyncio.sleep(5)  # Wait for 5 seconds before checking again
+
+    print("CAPTCHA resolved! Continuing the scraping process...")
 
 async def main(url, search_text, response_route):
     metadata = URLS.get(url)
@@ -109,15 +118,7 @@ async def main(url, search_text, response_route):
         
         # Check if a CAPTCHA is present
         if await page.query_selector("input#captchacharacters") or "captcha" in page.url:
-            print("CAPTCHA detected! Please solve it manually.")
-            await page.pause()
-
-            # Wait until the CAPTCHA is resolved
-            while await page.query_selector("input#captchacharacters") or "captcha" in page.url:
-                print("Waiting for CAPTCHA to be resolved...")
-                await asyncio.sleep(5)  # Wait for 5 seconds before checking again
-
-            print("CAPTCHA resolved! Continuing the scraping process...")
+            await handle_capcha(page)
 
         # Continue with the search
         search_page = await search(metadata, page, search_text)
