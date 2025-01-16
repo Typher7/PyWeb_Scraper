@@ -99,8 +99,10 @@ async def main(url, search_text, response_route):
 
     async with async_playwright() as pw:
         print('Connecting to browser.')
-        browser = await pw.chromium.connect_over_cdp(browser_url)
+        
+        browser = await pw.chromium.launch(headless=False)
         page = await browser.new_page()
+        
         print("Connected.")
         await page.goto(url, timeout=120000)
         print("Loaded initial page.")
