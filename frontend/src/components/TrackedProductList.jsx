@@ -60,12 +60,15 @@ const TrackedProductList = () => {
   };
 
   return (
-    <div>
-      <h2>Tracked Products</h2>
-      <ul>
+    <div className="p-5 font-sans">
+      <h2 className="text-2xl text-gray-800">Tracked Products</h2>
+      <ul className="list-none p-0">
         {trackedProducts.map((product) => (
-          <li key={product.id}>
-            {product.name}{" "}
+          <li
+            key={product.id}
+            className="flex items-center justify-between p-2 border-b border-gray-300"
+          >
+            <span>{product.name}</span>
             <input
               type="checkbox"
               onChange={() => handleToggleTrackedProduct(product.id)}
@@ -75,14 +78,20 @@ const TrackedProductList = () => {
         ))}
       </ul>
 
-      <div>
-        <h3>Add Tracked Product</h3>
+      <div className="mt-12">
+        <h3 className="text-xl text-gray-800">Add Tracked Product</h3>
         <input
           type="text"
           value={newTrackedProduct}
           onChange={handleNewTrackedProductChange}
+          className="p-2 w-full mb-2 border border-gray-300 rounded"
         />
-        <button onClick={handleAddTrackedProduct}>Add</button>
+        <button
+          onClick={handleAddTrackedProduct}
+          className="p-2 bg-green-500 text-white rounded cursor-pointer"
+        >
+          Add
+        </button>
       </div>
     </div>
   );
