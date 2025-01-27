@@ -69,7 +69,6 @@ const Main = () => {
   return (
     <div className="main bg-gray-50 min-h-screen p-6 flex flex-col items-center">
       <div className="w-full max-w-3xl bg-white shadow-lg rounded-lg p-6">
-        <h1 className="text-blue-700 text-4xl font-bold mb-6 text-center">Product Search Tool</h1>
         <form onSubmit={handleNewSearchTextSubmit} className="mb-6">
           <label className="block text-gray-700 text-lg font-medium mb-3">
             Search for a new item:
@@ -79,12 +78,12 @@ const Main = () => {
               type="text"
               value={newSearchText}
               onChange={handleNewSearchTextChange}
-              className="border border-gray-300 rounded-lg p-3 flex-grow focus:ring-2 focus:ring-blue-400 focus:outline-none"
+              className="border border-gray-300 rounded-lg p-3 flex-grow focus:ring-2 focus:ring-indigo-400 focus:outline-none"
               placeholder="Enter search term..."
             />
             <button
               type="submit"
-              className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-all"
+              className="bg-indigo-500 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 transition-all"
             >
               Start Scraper
             </button>

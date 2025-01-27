@@ -60,38 +60,42 @@ const TrackedProductList = () => {
   };
 
   return (
-    <div className="p-5 font-sans">
-      <h2 className="text-2xl text-gray-800">Tracked Products</h2>
-      <ul className="list-none p-0">
+    <div className="p-6 font-sans bg-gray-50">
+      <h2 className="text-3xl font-bold text-gray-800 mb-6">Tracked Products</h2>
+      <ul className="list-none divide-y divide-gray-300">
         {trackedProducts.map((product) => (
           <li
             key={product.id}
-            className="flex items-center justify-between p-2 border-b border-gray-300"
+            className="flex items-center justify-between py-4 px-2 hover:bg-gray-100 transition-colors"
           >
-            <span>{product.name}</span>
+            <span className="text-gray-700 font-medium">{product.name}</span>
             <input
               type="checkbox"
               onChange={() => handleToggleTrackedProduct(product.id)}
               checked={product.tracked}
+              className="w-5 h-5 accent-indigo-500"
             />
           </li>
         ))}
       </ul>
-
+  
       <div className="mt-12">
-        <h3 className="text-xl text-gray-800">Add Tracked Product</h3>
-        <input
-          type="text"
-          value={newTrackedProduct}
-          onChange={handleNewTrackedProductChange}
-          className="p-2 w-full mb-2 border border-gray-300 rounded"
-        />
-        <button
-          onClick={handleAddTrackedProduct}
-          className="p-2 bg-green-500 text-white rounded cursor-pointer"
-        >
-          Add
-        </button>
+        <h3 className="text-2xl font-semibold text-gray-800 mb-4">Add Tracked Product</h3>
+        <div className="flex items-center gap-3">
+          <input
+            type="text"
+            value={newTrackedProduct}
+            onChange={handleNewTrackedProductChange}
+            className="p-3 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400 focus:outline-none "
+            placeholder="Enter product name..."
+          />
+          <button
+              type="submit"
+              className="bg-indigo-500 text-white py-3 px-4 rounded-lg hover:bg-indigo-700 transition-all"
+            >
+              Add
+            </button>
+        </div>
       </div>
     </div>
   );
