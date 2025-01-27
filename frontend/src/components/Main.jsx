@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import SearchTextList from "./SearchTextList";
-import PriceHistoryTable from "./PriceHistoryTable";
+import Table from "./Table";
 import axios from "axios";
 import TrackedProductList from "./TrackedProductList";
 
@@ -103,7 +103,7 @@ const Main = () => {
   
         {showPriceHistory && (
           <div className="mt-6">
-            <PriceHistoryTable
+            <Table
               priceHistory={priceHistory}
               onClose={handlePriceHistoryClose}
             />

@@ -91,6 +91,7 @@ const TrackedProductList = () => {
           />
           <button
               type="submit"
+              onClick={handleAddTrackedProduct}
               className="bg-indigo-500 text-white py-3 px-4 rounded-lg hover:bg-indigo-700 transition-all"
             >
               Add
