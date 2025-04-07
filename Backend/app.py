@@ -193,6 +193,9 @@ def update_tracked_products():
     return jsonify(response), 200
 
 
+
+
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()

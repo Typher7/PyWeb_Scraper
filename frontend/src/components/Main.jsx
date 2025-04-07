@@ -59,10 +59,22 @@ const Main = () => {
       });
 
       alert("Scraper started successfully");
-      setSearchTexts([...searchTexts, newSearchText]);
+      if (!searchTexts.includes(newSearchText.toLowerCase)) {
+        setSearchTexts([...searchTexts, newSearchText.toLowerCase()]);
+      }
       setNewSearchText("");
     } catch (error) {
       alert("Error starting scraper:", error);
+    }
+  };
+
+  const handleClearHistory = async () => {
+    try {
+      setSearchTexts([]);
+      alert("Search history cleared successfully");
+    } catch (error) {
+      console.error("Error clearing search history:", error);
+      alert("Error clearing search history");
     }
   };
 
@@ -94,6 +106,7 @@ const Main = () => {
           <SearchTextList
             searchTexts={searchTexts}
             onSearchTextClick={handleSearchTextClick}
+            onClearHistory={handleClearHistory}
           />
         </div>
 
