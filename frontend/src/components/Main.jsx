@@ -7,10 +7,10 @@ import TrackedProductList from "./TrackedProductList";
 const URL = "http://localhost:5000";
 
 const Main = () => {
-    const [showPriceHistory, setShowPriceHistory] = useState(false);
-    const [priceHistory, setPriceHistory] = useState([]);
-    const [searchTexts, setSearchTexts] = useState([]);
-    const [newSearchText, setNewSearchText] = useState("");
+  const [showPriceHistory, setShowPriceHistory] = useState(false);
+  const [priceHistory, setPriceHistory] = useState([]);
+  const [searchTexts, setSearchTexts] = useState([]);
+  const [newSearchText, setNewSearchText] = useState("");
 
   useEffect(() => {
     fetchUniqueSearchTexts();
@@ -67,8 +67,8 @@ const Main = () => {
   };
 
   return (
-    <div className="main bg-gray-50 min-h-screen p-6 flex flex-col items-center">
-      <div className="w-full max-w-3xl bg-white shadow-lg rounded-lg p-6">
+    <div className="main bg-gray-50 min-h-screen p-6 flex flex-col">
+      <div className="w-full bg-white shadow-lg rounded-lg p-6">
         <form onSubmit={handleNewSearchTextSubmit} className="mb-6">
           <label className="block text-gray-700 text-lg font-medium mb-3">
             Search for a new item:
@@ -89,18 +89,18 @@ const Main = () => {
             </button>
           </div>
         </form>
-  
+
         <div className="mb-6">
           <SearchTextList
             searchTexts={searchTexts}
             onSearchTextClick={handleSearchTextClick}
           />
         </div>
-  
+
         <div className="mb-6">
           <TrackedProductList />
         </div>
-  
+
         {showPriceHistory && (
           <div className="mt-6">
             <Table
@@ -112,7 +112,6 @@ const Main = () => {
       </div>
     </div>
   );
-  
-}
+};
 
-export default Main
+export default Main;
