@@ -28,7 +28,7 @@ export default function Table({ priceHistory, onClose }) {
     const currentPrice = product.priceHistory[0].price;
     const lastPrice = product.priceHistory[1].price;
     const change = 100 - (currentPrice / lastPrice) * 100;
-    return Math.round(change * 100) / 100;
+    return (Math.round(change * 100) / 100).toFixed(2);
   };
 
   return (
@@ -72,7 +72,7 @@ export default function Table({ priceHistory, onClose }) {
                     </th>
                     <th
                       scope="col"
-                      className="sticky top-0 z-1 border-b border-gray-300 bg-gray-50 bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter"
+                      className="sticky top-0 z-1 border-b border-gray-300 bg-gray-50 bg-opacity-75 px-3 py-3.5 text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter"
                     >
                       Price Change
                     </th>
@@ -123,12 +123,12 @@ export default function Table({ priceHistory, onClose }) {
                             productIdx !== product.length - 1
                               ? "border-b border-gray-200"
                               : "",
-                            "whitespace-nowrap px-3 py-4 text-sm text-gray-500",
-                            change > 0 ? "text-red-500" : "text-green-500"
+                            "whitespace-nowrap px-3 py-4 text-sm text-gray-500 flex justify-center",
+                            change < 0 ? "text-red-500" : "text-green-500"
                           )}
                         >
-                          {change >= 0 && "+"}
-                          {change}%
+                          {change < 0 ? "+" : change > 0 ? "-" : ""}
+                          {change > 0 ? change : -change}%
                         </td>
                       </tr>
                     );
