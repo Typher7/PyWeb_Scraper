@@ -68,16 +68,6 @@ const Main = () => {
     }
   };
 
-  const handleClearHistory = async () => {
-    try {
-      setSearchTexts([]);
-      alert("Search history cleared successfully");
-    } catch (error) {
-      console.error("Error clearing search history:", error);
-      alert("Error clearing search history");
-    }
-  };
-
   return (
     <div className="main bg-gray-50 min-h-screen p-6 flex flex-col">
       <div className="w-full bg-white shadow-lg rounded-lg p-6">
@@ -106,7 +96,6 @@ const Main = () => {
           <SearchTextList
             searchTexts={searchTexts}
             onSearchTextClick={handleSearchTextClick}
-            onClearHistory={handleClearHistory}
           />
         </div>
 
